@@ -1,5 +1,6 @@
 use anchor_lang::prelude::*;
 
+#[account]
 pub struct PlayerAccount {
     pub player: Pubkey,
     pub subscription_type: SubscriptionType,

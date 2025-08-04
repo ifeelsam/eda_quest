@@ -1,5 +1,6 @@
 use anchor_lang::prelude::*;
-use crate::{GameState, PlayerAccount, SubscriptionType, GameError};
+use crate::{GameState, PlayerAccount};
+use crate::state::SubscriptionType;
 
 #[derive(Accounts)]
 pub struct Subscribe<'info> {
@@ -12,7 +13,7 @@ pub struct Subscribe<'info> {
     #[account(
         init_if_needed,
         payer = player,
-        space = 8 + 32 + 1 + 8 + 8 + 1 + 1,
+        space = 8 + PlayerAccount::INIT_SPACE,
         seeds = [b"player", player.key().as_ref()],
         bump
     )]

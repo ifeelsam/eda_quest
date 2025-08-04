@@ -1,5 +1,7 @@
 use anchor_lang::prelude::*;
 
+use crate::GameState;
+
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(
@@ -13,4 +15,18 @@ pub struct Initialize<'info> {
     #[account(mut)]
     pub authority: Signer<'info>,
     pub system_program: Program<'info, System>,
+}
+
+
+impl<'info> Initialize<'info> {
+    pub fn initialize(&mut self) -> Result<()> {
+        self.game_state.set_inner(GameState {
+            authority,
+            total_players: 0,
+            monthly_price: 60_606_060, // ~$10  
+            yearly_price: 606_060_606, // ~$100 
+
+        });
+        Ok(())
+    }
 }

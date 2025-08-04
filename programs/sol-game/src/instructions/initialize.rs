@@ -21,11 +21,10 @@ pub struct Initialize<'info> {
 impl<'info> Initialize<'info> {
     pub fn initialize(&mut self) -> Result<()> {
         self.game_state.set_inner(GameState {
-            authority,
+            authority: self.authority.key(),
             total_players: 0,
             monthly_price: 60_606_060, // ~$10  
             yearly_price: 606_060_606, // ~$100 
-
         });
         Ok(())
     }
